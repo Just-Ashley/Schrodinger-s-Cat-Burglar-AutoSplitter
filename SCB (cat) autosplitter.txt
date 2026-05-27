@@ -1,0 +1,31 @@
+// Note: The Exe just says SCB, not Steam, and not the full game name.
+state("SCB")
+{
+	float timer: "GameAssembly.dll", 0x03508608, 0x440, 0x2D0, 0x180, 0xD80;
+// Note: GameAssembly.dll+837625
+}
+// The timer
+gameTime
+{
+	return TimeSpan.FromSeconds(current.timer);
+}
+// Loading or Pauses
+isLoading
+{
+	if(current.timer == old.timer && current.timer != 0)
+		return true;
+	return false;
+}
+// Resetting
+reset
+{
+	if(current.timer == old.timer && current.timer == 0)
+		return true;
+	return false;
+}
+// Starting
+start
+{
+	if(old.timer == 0 && current.timer != 0)
+		return true;
+}
