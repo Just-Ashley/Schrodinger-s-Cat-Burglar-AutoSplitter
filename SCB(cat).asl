@@ -1,11 +1,19 @@
 // Note: The Exe just says SCB, not Steam, and not the full game name.
-state("SCB")
+state("SCB", "Current")
 {
 	float timer: "UnityPlayer.dll", 0x01CFE860, 0x138, 0x260, 0x50, 0x180, 0x0, 0xB8, 0x0;
-// Note: Still working on Collectibles which do not work at the moment.
-	byte flagrante: "GameAssembly.dll", 0x03351710, 0xB8, 0x10, 0x140, 0xD0, 0x10, 0x30, 0x24;
-	byte quantum: "GameAssembly.dll", 0x033453E8, 0xB8, 0x18, 0x160, 0x50, 0x10, 0x48, 0x24;
 }
+
+state("SCB", "1.029")
+{
+	float timer: "UnityPlayer.dll", 0x01D1C1F0, 0x160, 0x38, 0xA8, 0x68, 0x28, 0x128, 0xFA0;
+}
+
+state("SCB", "1.015")
+{
+	float timer: "GameAssembly.dll", 0x033863E0, 0xD0, 0x48, 0x90, 0x3C0, 0x40, 0xB8, 0x0;
+}
+
 startup
 {
 	settings.Add("split_on_collectibles", false, "This setting is currently broken");
