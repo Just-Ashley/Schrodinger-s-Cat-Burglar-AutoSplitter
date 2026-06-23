@@ -16,6 +16,7 @@ state("SCB", "1.015")
 
 startup
 {
+	settings.Add("IL", false, "Test Segments of Runs.");
 	settings.Add("split_on_collectibles", false, "This setting is currently broken");
 	if (timer.CurrentTimingMethod == TimingMethod.RealTime)
     {
@@ -31,10 +32,18 @@ startup
     }
 }
 
+init
+{
+	var H = 0;
+}
+
 // The timer
 gameTime
 {
-	return TimeSpan.FromSeconds(current.timer);
+	if(!settings["IL"])
+		return TimeSpan.FromSeconds(current.timer);
+	if(settings["IL"])
+		return TimeSpan.FromSeconds(current.H);
 }
 // Loading or Pauses
 isLoading
@@ -53,6 +62,9 @@ reset
 // Starting
 start
 {
+	if(settings["IL"])
+		if(old.timer != current.timer)
+			return true;
 	if(old.timer == 0 && current.timer != 0)
 		return true;
 }
