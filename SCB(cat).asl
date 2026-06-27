@@ -2,6 +2,7 @@
 state("SCB", "Current")
 {
 	float timer: "UnityPlayer.dll", 0x01CFE860, 0x138, 0x260, 0x50, 0x180, 0x0, 0xB8, 0x0;
+	byte completion: "GameAssembly.dll", 0x0337CFD8, 0x48, 0xB8, 0x58, 0x20, 0x1B0, 0x338, 0xEE8;
 }
 
 state("SCB", "1.029")
@@ -65,12 +66,14 @@ start
 	if(settings["IL"])
 		if(old.timer != current.timer)
 			return true;
-	if(old.timer == 0 && current.timer != 0)
+	if(old.timer == 0 && current.timer != 0 && old.timer != current.timer)
 		return true;
 }
 // Collectible splits
 split
 {
+	if(current.completion == 1 && old.completion == 0)
+		return true;
 	if(settings["split_on_collectibles"] && current.flagrante == (old.flagrante + 1))
 		return true;
 	if(settings["split_on_collectibles"] && current.quantum == (old.quantum + 1))
