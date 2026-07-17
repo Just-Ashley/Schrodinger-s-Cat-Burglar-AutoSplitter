@@ -1,5 +1,5 @@
 # Schrodinger-s-Cat-Burglar-AutoSplitter
 An autosplitter for livesplit that works for the game "Schrodinger's Cat Burglar"
-Currently only works for Steam and doesn't have a splitting feature. Currently just starts, resets, and shows game time.
+Currently only works for Steam.
 
-To activate, just right click LiveSplit and click "Activate" and you're done!
+To activate, just right click LiveSplit and click "Activate" in the "Edit Splits" section and you're done!
